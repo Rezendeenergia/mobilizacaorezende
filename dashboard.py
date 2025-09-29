@@ -157,7 +157,9 @@ def processar_dados(df):
     # Remover não contratados
     if 'Status Atual' in df.columns:
         df = df[df['Status Atual'] != 'NÃO CONTRATADO'].copy()
-
+        
+    if 'Liberado Campo' in df.columns:
+        df = df[df['Liberado Campo'] != 'NÃO CONTRATADO'].copy()
     return df
 
 
@@ -239,7 +241,9 @@ def criar_grafico_barras(df, coluna_metrica, titulo, cor='#F7931E'):
     """Cria gráfico de barras"""
     fig = px.bar(df, x=df.index, y=coluna_metrica,
                  title=titulo,
-                 color_discrete_sequence=[cor])
+                 color_discrete_sequence=[cor],
+                 text=coluna_metrica)
+    fig.update_traces(texttemplate='%{text:.1f}', textposition='outside')
     fig.update_layout(
         plot_bgcolor='white',
         paper_bgcolor='white',
@@ -256,7 +260,9 @@ def criar_grafico_linha_temporal(df):
     fig = px.line(dados_mes, x='Mes Abertura', y='Tempo Total Mobilizacao',
                   title='Média de Tempo Total de Mobilização por Mês',
                   markers=True,
-                  color_discrete_sequence=['#F7931E'])
+                  color_discrete_sequence=['#F7931E'],
+                  text='Tempo Total Mobilizacao')
+    fig.update_traces(texttemplate='%{text:.1f}', textposition='top center')
     fig.update_layout(
         plot_bgcolor='white',
         paper_bgcolor='white',
