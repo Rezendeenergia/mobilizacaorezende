@@ -55,9 +55,9 @@ st.markdown("""
 
 # Credenciais Azure AD (usando st.secrets)
 try:
-    CLIENT_ID = st.secrets["azure"]["client_id"]
-    CLIENT_SECRET = st.secrets["azure"]["client_secret"]
-    TENANT_ID = st.secrets["azure"]["tenant_id"]
+    CLIENT_ID = st.secrets["azure"]["CLIENT_ID"]
+    CLIENT_SECRET = st.secrets["azure"]["CLIENT_SECRET"]
+    TENANT_ID = st.secrets["azure"]["TENANT_ID"]
     LOGO_PATH = st.secrets["paths"]["logo_path"]
 except KeyError as e:
     st.error(f"⚠️ Configuração faltando no secrets: {e}")
