@@ -55,10 +55,10 @@ st.markdown("""
 
 # Credenciais Azure AD (usando st.secrets)
 try:
-    CLIENT_ID = st.secrets["azure"]["client_id"]
-    CLIENT_SECRET = st.secrets["azure"]["client_secret"]
-    TENANT_ID = st.secrets["azure"]["tenant_id"]
-    LOGO_PATH = st.secrets["paths"]["logo_path"]
+    client_id = st.secrets["azure"]["client_id"]
+    client_secret = st.secrets["azure"]["client_secret"]
+    tenant_id = st.secrets["azure"]["tenant_id"]
+    logo_path = st.secrets["paths"]["logo_path"]
 except KeyError as e:
     st.error(f"⚠️ Configuração faltando no secrets: {e}")
     st.info("Por favor, configure o arquivo .streamlit/secrets.toml")
