@@ -58,7 +58,7 @@ try:
     CLIENT_ID = st.secrets["azure"]["CLIENT_ID"]
     CLIENT_SECRET = st.secrets["azure"]["CLIENT_SECRET"]
     TENANT_ID = st.secrets["azure"]["TENANT_ID"]
-    LOGO_PATH = st.secrets["paths"]["logo_path"]
+    LOGO_PATH = st.secrets["paths"]["LOGO_PATH"]
 except KeyError as e:
     st.error(f"⚠️ Configuração faltando no secrets: {e}")
     st.info("Por favor, configure o arquivo .streamlit/secrets.toml")
