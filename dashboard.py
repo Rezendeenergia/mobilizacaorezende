@@ -55,10 +55,10 @@ st.markdown("""
 
 # Credenciais Azure AD (usando st.secrets)
 try:
-    client_id = st.secrets["azure"]["client_id"]
-    client_secret = st.secrets["azure"]["client_secret"]
-    tenant_id = st.secrets["azure"]["tenant_id"]
-    logo_path = st.secrets["paths"]["logo_path"]
+    CLIENT_ID = st.secrets["azure"]["client_id"]
+    CLIENT_SECRET = st.secrets["azure"]["client_secret"]
+    TENANT_ID = st.secrets["azure"]["tenant_id"]
+    LOGO_PATH = st.secrets["paths"]["logo_path"]
 except KeyError as e:
     st.error(f"⚠️ Configuração faltando no secrets: {e}")
     st.info("Por favor, configure o arquivo .streamlit/secrets.toml")
@@ -131,9 +131,9 @@ def gerar_pdf_avaliacao(dados_avaliacao, nome_arquivo=None):
     )
 
     # Adicionar logo se existir
-    if os.path.exists(logo_path):
+    if os.path.exists(LOGO_PATH):
         try:
-            logo = Image(logo_path, width=3 * cm, height=1.5 * cm)
+            logo = Image(LOGO_PATH, width=3 * cm, height=1.5 * cm)
             logo.hAlign = 'CENTER'
             elements.append(logo)
             elements.append(Spacer(1, 0.5 * cm))
@@ -319,9 +319,9 @@ def ja_foi_avaliado(colaborador, tipo_avaliacao):
 def download_excel_sharepoint():
     try:
         app = ConfidentialClientApplication(
-            client_id,
-            authority=f"https://login.microsoftonline.com/{tenant_id}",
-            client_credential=client_secret,
+            CLIENT_ID,
+            authority=f"https://login.microsoftonline.com/{TENANT_ID}",
+            client_credential=CLIENT_SECRET,
         )
 
         result = app.acquire_token_for_client(scopes=["https://graph.microsoft.com/.default"])
