@@ -131,9 +131,9 @@ def gerar_pdf_avaliacao(dados_avaliacao, nome_arquivo=None):
     )
 
     # Adicionar logo se existir
-    if os.path.exists(LOGO_PATH):
+    if os.path.exists(logo_path):
         try:
-            logo = Image(LOGO_PATH, width=3 * cm, height=1.5 * cm)
+            logo = Image(logo_path, width=3 * cm, height=1.5 * cm)
             logo.hAlign = 'CENTER'
             elements.append(logo)
             elements.append(Spacer(1, 0.5 * cm))
@@ -319,9 +319,9 @@ def ja_foi_avaliado(colaborador, tipo_avaliacao):
 def download_excel_sharepoint():
     try:
         app = ConfidentialClientApplication(
-            CLIENT_ID,
-            authority=f"https://login.microsoftonline.com/{TENANT_ID}",
-            client_credential=CLIENT_SECRET,
+            client_id,
+            authority=f"https://login.microsoftonline.com/{tenant_id}",
+            client_credential=client_secret,
         )
 
         result = app.acquire_token_for_client(scopes=["https://graph.microsoft.com/.default"])
